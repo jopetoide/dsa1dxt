@@ -1,0 +1,111 @@
+/* Arquivo: style.css
+  Este arquivo DEVE ser colocado dentro de uma pasta chamada 'css'
+*/
+
+body {
+    /* **********************************************
+      ** ATENÇÃO: IMAGEM DE FUNDO (BACKGROUND) **
+      **********************************************
+      
+      Descomente a linha abaixo (remova o /* e o */)
+      'SUA_IMAGEM_DE_FUNDO.jpg' 
+      
+      IMPORTANTE: Sua imagem deve estar na pasta 'images/'.
+      O caminho '../images/' significa "voltar uma pasta (da 'css' para a raiz) 
+      e depois entrar na pasta 'images'".
+    */
+
+    / background-image: url('../images/fundo.webp'); 
+    
+    /* Fallback (cor de fundo caso a imagem não carregue) */
+    background-color: #1a0000;
+
+    /* Configurações da imagem de fundo */
+    background-attachment: fixed; /* A imagem fica parada ao rolar */
+    background-size: cover; /* Cobre toda a tela */
+    background-position: center center;
+    
+    /* Adiciona um padding no topo para compensar o menu fixo */
+    padding-top: 56px; 
+}
+
+/* Sobreposição escura para melhorar a legibilidade do texto sobre o fundo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Cor escura (preto) com 60% de transparência */
+    background-color: rgba(0, 0, 0, 0.6); 
+    /* Cor vermelha com transparência (alternativa) */
+    /* background-color: rgba(138, 3, 3, 0.4); */
+    z-index: -1; /* Fica atrás de todo o conteúdo */
+}
+
+/* ---------- SEÇÕES GERAIS ---------- */
+
+/* Estilo para as caixas de conteúdo (cards, etc.) */
+/* Usamos um branco levemente translúcido para destacar do fundo */
+.card, .content-box {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: none;
+}
+
+/* Títulos das seções (ex: "O Código", "Mídia") */
+.section-title {
+    color: #FFFFFF; /* Cor Branca */
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 2px solid #8A0303; /* Linha vermelha abaixo */
+    display: inline-block;
+    padding-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Título da seção da Galeria (para ter fundo branco) */
+.section-title-gallery {
+    color: #333; /* Cor escura */
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Cor principal (vermelho) para títulos de cards e destaques */
+.text-danger {
+    color: #8A0303 !important; /* Vermelho-sangue */
+}
+
+/* ---------- SEÇÕES ESPECÍFICAS ---------- */
+
+/* Seção Home (Banner) */
+#home {
+    height: 60vh; /* Altura de 60% da tela */
+    min-height: 300px;
+    /* Usamos a imagem de fundo do body */
+}
+
+.text-shadow {
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+/* Seção Informações (Cards) */
+#informacoes .card {
+    transition: transform 0.3s ease;
+}
+
+#informacoes .card:hover {
+    transform: scale(1.03); /* Efeito de zoom leve */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+#informacoes .card-title {
+    font-weight: bold;
+}
+
+/* Rodapé */
+#rodape {
+    border-top: 3px solid #8A0303; /* Linha vermelha no topo */
+}
