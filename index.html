@@ -1,21 +1,183 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br" data-bs-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dexter - Página Principal</title>
+    <title>Dexter - Home</title>
 
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Font (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- CSS Customizado (iria em css/style.css) -->
+    <style>
+        :root {
+            --dexter-red: #b20000;
+            /* Vermelho sangue escuro */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Configuração de Cores Light/Dark Mode */
+        [data-bs-theme="light"] {
+            --bs-body-bg: #f0f0f0;
+            /* Branco "sujo" */
+            --bs-body-color: #212529;
+            --bs-tertiary-bg: #ffffff;
+            --bs-card-bg: #ffffff;
+            --bs-card-border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-bs-theme="dark"] {
+            --bs-body-bg: #121212;
+            /* Preto profundo */
+            --bs-body-color: #f0f0f0;
+            --bs-tertiary-bg: #1e1e1e;
+            /* Preto mais claro para nav/footer/cards */
+            --bs-card-bg: #1e1e1e;
+            --bs-card-border-color: #444;
+        }
+
+        /* Destaques em Vermelho */
+        .navbar-brand,
+        .hero-title,
+        h1,
+        h2,
+        h3 {
+            color: var(--dexter-red);
+            font-weight: 700;
+        }
+
+        .btn-danger {
+            background-color: var(--dexter-red);
+            border-color: var(--dexter-red);
+        }
+
+        .btn-danger:hover {
+            background-color: #8c0000;
+            /* Vermelho mais escuro no hover */
+            border-color: #8c0000;
+        }
+
+        .nav-link.active {
+            color: var(--dexter-red) !important;
+            font-weight: 700;
+        }
+
+        /* Cantos Arredondados */
+        img,
+        .card,
+        .btn,
+        .navbar,
+        .ratio,
+        .form-control {
+            border-radius: 0.5rem !important;
+            /* Cantos arredondados */
+        }
+
+        .card {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        [data-bs-theme="dark"] .card {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Seções */
+        section {
+            padding: 60px 0;
+            overflow: hidden;
+            /* Para garantir que os arredondamentos funcionem */
+        }
+
+        .navbar {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            padding: 30px 0;
+        }
+
+        /* Seção Home (Banner) */
+        .hero-banner {
+            position: relative;
+            padding: 10rem 0;
+            /* Imagem de placeholder. Troque pelo caminho da sua imagem */
+            /* Ex: background: url('../images/dexter-banner.jpg') */
+            background: url('https://placehold.co/1920x800/222/aaa?text=Banner+Dexter') no-repeat center center;
+            background-size: cover;
+            color: white;
+            border-radius: 0 !important;
+            /* Banner ocupa a largura toda */
+        }
+
+        .hero-banner::after {
+            /* Overlay escuro para legibilidade */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+        }
+
+        /* Botão de Tema */
+        .theme-toggle {
+            cursor: pointer;
+        }
+
+        #theme-light-icon {
+            display: none;
+            /* Começa no modo claro, ícone de sol escondido */
+        }
+
+        [data-bs-theme="dark"] #theme-light-icon {
+            display: inline-block;
+            /* Mostra sol no modo escuro */
+        }
+
+        [data-bs-theme="dark"] #theme-dark-icon {
+            display: none;
+            /* Esconde lua no modo escuro */
+        }
+    </style>
+
 </head>
 
-<body>
+<body class="bg-body-secondary">
 
-    <!-- 1. SEÇÃO: MENU (NAV) -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <!-- 1. MENU (NAVBAR) -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">DEXTER</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -23,131 +185,182 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html#informacoes">Informações</a>
+                        <a class="nav-link" href="#informacoes">Informações</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="galeria.html">Galeria</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html#midia">Mídia</a>
+                        <a class="nav-link" href="personagens.html">Personagens</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#midia">Mídia</a>
                     </li>
                 </ul>
+                <!-- Botão de Tema Light/Dark -->
+                <button class="btn btn-outline-secondary ms-2 theme-toggle" id="theme-toggle" type="button"
+                    aria-label="Toggle theme">
+                    <!-- Ícone de Lua (Dark Mode) -->
+                    <span id="theme-dark-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-moon-stars-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
+                            <path
+                                d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162h1.234a.217.217 0 0 1 .15.364l-.998.802.399 1.162a.217.217 0 0 1-.316.228l-.988-.811-.988.811a.217.217 0 0 1-.316-.228l.399-1.162-.998-.802a.217.217 0 0 1 .15-.364h1.234l.387-1.162zM13.37 7.01a.217.217 0 0 1 .412 0l.387 1.162h1.234a.217.217 0 0 1 .15.364l-.998.802.399 1.162a.217.217 0 0 1-.316.228l-.988-.811-.988.811a.217.217 0 0 1-.316-.228l.399-1.162-.998-.802a.217.217 0 0 1 .15-.364h1.234l.387-1.162z" />
+                        </svg>
+                    </span>
+                    <!-- Ícone de Sol (Light Mode) -->
+                    <span id="theme-light-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-sun-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
+                        </svg>
+
+                    </span>
+                </button>
             </div>
         </div>
     </nav>
 
-    <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <title>Bootstrap Example</title>
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  </head>
- 
-
-    <!-- 2. SEÇÃO: HOME (Banner) -->
-    <section id="home" class="d-flex align-items-center justify-content-center text-center">
-        <div class="container content-box">
-            <h1 class="display-3 text-light text-shadow">Dexter Morgan</h1>
-            <p class="lead text-light text-shadow">Analista de padrões de sangue. Serial killer.</p>
-        </div>
-    </section>
-
-    <div class="container my-5">
-        <!-- 3. SEÇÃO: INFORMAÇÕES (Cards) -->
-        <section id="informacoes" class="py-5">
-            <div class="row">
-                <div class="col-12 text-center mb-4">
-                    <h2 class="section-title">O Código</h2>
-                </div>
+    <main>
+        <!-- 2. HOME (BANNER) -->
+        <!-- A tag <section> para o home é o próprio banner -->
+        <section id="home" class="hero-banner text-center">
+            <div class="hero-content container">
+                <h1 class="hero-title">DEXTER MORGAN</h1>
+                <p class="hero-subtitle lead">Seu analista forense favorito.</p>
+                <a href="#informacoes" class="btn btn-danger btn-lg mt-3">Conheça o Código</a>
             </div>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100 shadow-sm">
-                        <!-- Substitua 'images/card1.jpg' pela sua imagem -->
-                        <img src="images/dexter image 1" class="card-img-top" alt="Imagem sobre Dexter">
-                        <div class="card-body">
-                            <h5 class="card-title text-danger">Quem é Dexter?</h5>
-                            <p class="card-text">De dia, um pacato analista forense da polícia de Miami. À noite, um
-                                vigilante que caça criminosos que escaparam da justiça, seguindo o rigoroso "Código de
-                                Harry".</p>
+            <!-- Imagem que iria em /images/banner-dexter.jpg (aplicada via CSS) -->
+        </section>
+
+        <!-- 3. INFORMAÇÕES -->
+        <section id="informacoes" class="bg-body-secondary">
+            <div class="container">
+                <h2 class="text-center mb-5">Sobre a Série</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <!-- Imagem que iria em /images/info-card-1.jpg -->
+                            <img src="https://placehold.co/600x400/b20000/white?text=O+Código" class="card-img-top"
+                                alt="[Imagem simbólica do Código de Harry]">
+                            <div class="card-body">
+                                <h5 class="card-title">O Código de Harry</h5>
+                                <p class="card-text">Dexter segue um código rigoroso ensinado por seu pai adotivo,
+                                    Harry, que o direciona a matar apenas outros assassinos que escaparam da justiça.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100 shadow-sm">
-                        <!-- Substitua 'images/card2.jpg' pela sua imagem -->
-                        <img src="images/dexter image 2.webp" class="card-img-top" alt="Imagem sobre o Código">
-                        <div class="card-body">
-                            <h5 class="card-title text-danger">O Passageiro Sombrio</h5>
-                            <p class="card-text">Dexter refere-se à sua necessidade de matar como seu "Passageiro
-                                Sombrio". O Código de seu pai adotivo, Harry, foi criado para canalizar essa urgência
-                                apenas para aqueles que "merecem".</p>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <!-- Imagem que iria em /images/info-card-2.jpg -->
+                            <img src="https://placehold.co/600x400/1e1e1e/white?text=Dupla+Vida" class="card-img-top"
+                                alt="[Imagem de Dexter no laboratório]">
+                            <div class="card-body">
+                                <h5 class="card-title">Dupla Vida</h5>
+                                <p class="card-text">De dia, ele é um especialista em padrões de sangue para a Polícia
+                                    de Miami. À noite, ele caça suas presas, equilibrando sua vida normal com seu
+                                    "Passageiro Sombrio".</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100 shadow-sm">
-                        <!-- Substitua 'images/card3.jpg' pela sua imagem -->
-                        <img src="images/dexter image 3.jpg" class="card-img-top" alt="Imagem sobre Miami">
-                        <div class="card-body">
-                            <h5 class="card-title text-danger">Miami Metro P.D.</h5>
-                            <p class="card-text">Ele trabalha ao lado de sua irmã Debra Morgan, do sargento Angel
-                                Batista e da tenente María LaGuerta, solucionando os mesmos crimes que ele,
-                                ironicamente, às vezes comete.</p>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <!-- Imagem que iria em /images/info-card-3.jpg -->
+                            <img src="https://placehold.co/600x400/555/white?text=Miami" class="card-img-top"
+                                alt="[Imagem de Miami]">
+                            <div class="card-body">
+                                <h5 class="card-title">O Cenário: Miami</h5>
+                                <p class="card-text">A ensolarada e vibrante Miami serve como um contraste irônico para
+                                    os atos sombrios de Dexter, com suas lanchas, praias e uma agitada vida noturna.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 4. SEÇÃO: MÍDIA (Vídeo) -->
-        <section id="midia" class="py-5">
-            <div class="row">
-                <div class="col-12 text-center mb-4">
-                    <h2 class="section-title">Mídia</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <p class="text-center">Confira um bevre resumo.</p>
-                    <div class="ratio ratio-16x9 shadow">
-                        <iframe width="560" height="315"
-                            src="https://www.youtube.com/embed/McBPzIO7BrA?si=Sc6E2jlAz4ql4_a_"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
+        <!-- 4. MÍDIA (VÍDEO) -->
+        <section id="midia" class="bg-body-tertiary">
+            <div class="container">
+                <h2 class="text-center mb-5">Mídia</h2>
+                <p class="text-center lead mb-4">Você Aguentaria ser um SERIAL KILLER como o DEXTER na VIDA REAL?.</p>
+                <div class="ratio ratio-16x9">
+                    <!-- Trailer Oficial de Dexter -->
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/GYYqoRSR4G8?si=8tG32AFuQ8eTG_aI"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
-    </div>
 
-    <!-- 5. SEÇÃO: RODAPÉ -->
-    <footer id="rodape" class="bg-dark text-light py-4">
-        <div class="container text-center">
-            <p class="mb-1">Site desenvolvido em 2025 para Atividade Final de DSA1</p>
-            <p class="mb-1"><strong>Turma:</strong> INF1GT</p>
-            <p class="mb-0"><strong>Integrantes:</strong></p>
-            <ul class="list-inline mb-0">
-                <li class="list-inline-item">° João Pedro Teixeira , 15</li>
-                <li class="list-inline-item">° Ezequiel , 10</li>
-            </ul>
+    </main>
+
+    <!-- 5. RODAPÉ -->
+    <footer id="rodape" class="bg-body-tertiary text-center text-body-secondary">
+        <div class="container">
+            <p class="mb-1">** Site desenvolvido em 2025 para Atividade Final de DSA1 **</p>
+            <p class="mb-1">Turma: INF1GT</p>
+            <p class="mb-0">Integrantes: João Pedro Teixeira Santos N15 Ezequiel Dias Silva Filho N10</p>
         </div>
     </footer>
 
-    <!-- Bootstrap 5.3 JS Bundle -->
+    <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
+    <!-- Script do Modo Light/Dark -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const htmlEl = document.documentElement;
+            const lightIcon = document.getElementById('theme-light-icon');
+            const darkIcon = document.getElementById('theme-dark-icon');
+
+            // Função para atualizar o ícone baseado no tema
+            function updateToggleIcon(theme) {
+                if (theme === 'dark') {
+                    if (lightIcon) lightIcon.style.display = 'inline-block';
+                    if (darkIcon) darkIcon.style.display = 'none';
+                } else {
+                    if (lightIcon) lightIcon.style.display = 'none';
+                    if (darkIcon) darkIcon.style.display = 'inline-block';
+                }
+            }
+
+            // 1. Ao carregar a página, verificar o localStorage
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            htmlEl.setAttribute('data-bs-theme', savedTheme);
+            updateToggleIcon(savedTheme);
+
+            // 2. Adicionar o listener de clique no botão
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = htmlEl.getAttribute('data-bs-theme');
+                    let newTheme = 'light';
+
+                    if (currentTheme === 'light') {
+                        newTheme = 'dark';
+                    }
+
+                    htmlEl.setAttribute('data-bs-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    updateToggleIcon(newTheme);
+                });
+            }
+        });
+    </script>
+
 </body>
 
 </html>
